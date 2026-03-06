@@ -41,8 +41,6 @@ A tela `index.html` carrega o arquivo **`css/style.css`** de forma externa e exi
 
 - [x] Criar estrutura base do `index.html`
 - [x] Adicionar navbar com links para as outras paginas
-- [x] Mover CSS inline para `css/style.css`
-- [x] Remover o link de Login da pagina principal
 - [ ] Adicionar conteudo nas demais views
 - [ ] Conectar views aos controllers
 
