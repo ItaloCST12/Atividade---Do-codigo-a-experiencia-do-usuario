@@ -1,7 +1,7 @@
-# Projeto MVC — Pagina Inicial
+# Projeto MVC — TCC
 
 Projeto desenvolvido seguindo o padrao de arquitetura **MVC** (_Model-View-Controller_).
-A pagina inicial serve como ponto de entrada da aplicacao e disponibiliza uma _navbar_ de navegacao entre as views.
+A pagina inicial (`index.html`) serve como ponto de entrada da aplicacao, com uma navbar e um botao de acao principal que demonstra a comunicacao entre View e Controller.
 
 ---
 
@@ -11,61 +11,70 @@ A pagina inicial serve como ponto de entrada da aplicacao e disponibiliza uma _n
 
 - `src/views/` — telas HTML da aplicacao
 - `src/views/css/` — folhas de estilo externas
-- `src/views/js/` — scripts JavaScript
-- `src/controllers/` — logica de controle
-- `src/models/` — camada de dados
+- `src/views/js/` — scripts JavaScript (logica de interacao)
+- `src/controllers/` — logica de controle e redirecionamento
+- `src/models/` — camada de dados (a ser implementada)
+- `src/config/` — configuracao do sistema (conexao com banco)
 
-### Paginas disponíveis
+### Arquivos do projeto
 
-1. `index.html` — Pagina inicial
-2. `cadastro.html` — Formulario de cadastro
-3. `contatos.html` — Lista de contatos
-4. `produto.html` — Exibicao de produtos
-5. `login.html` — Autenticacao do usuario
+| Arquivo                                   | Descricao                                   |
+| ----------------------------------------- | ------------------------------------------- |
+| `src/views/index.html`                    | Pagina inicial com navbar e botao de acao   |
+| `src/views/cadastro.html`                 | Formulario de cadastro (estrutura pendente) |
+| `src/views/contatos.html`                 | Lista de contatos (estrutura pendente)      |
+| `src/views/produto.html`                  | Exibicao de produtos (estrutura pendente)   |
+| `src/views/css/style.css`                 | Estilos com contraste e efeito hover        |
+| `src/views/js/main.js`                    | Logica de clique e feedback visual          |
+| `src/controllers/NavigationController.js` | Controller que gerencia rotas de navegacao  |
+| `src/config/database.php`                 | Classe Database para conexao com o banco    |
 
 ---
 
 ## Como funciona a Pagina Inicial
 
-A tela `index.html` carrega o arquivo **`css/style.css`** de forma externa e exibe uma navbar com os links de navegacao.
+A tela `index.html` carrega o arquivo **`css/style.css`** para estilizacao e o **`js/main.js`** para interatividade.
 
-### Fluxo de navegacao
+### Navbar atual
 
-1. O usuario acessa `index.html` no navegador.
-2. Visualiza o menu superior com os links das paginas.
-3. Clica no item desejado e e redirecionado para a view correspondente.
-
----
-
-## Checklist de Implementacao
-
-- [x] Criar estrutura base do `index.html`
-- [x] Adicionar navbar com links para as outras paginas
-- [ ] Adicionar conteudo nas demais views
-- [ ] Conectar views aos controllers
-
----
-
-## Trecho de Codigo — Navbar
-
-Estrutura HTML da navbar na `index.html`:
+A navbar possui dois links ("Inicio" e "Perfil") e um botao "Realizar Acao":
 
 ```html
 <nav>
   <ul>
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="cadastro.html">Cadastro</a></li>
-    <li><a href="contatos.html">Contatos</a></li>
-    <li><a href="produto.html">Produto</a></li>
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Perfil</a></li>
+    <li><button id="btn-acao-principal">Realizar Ação</button></li>
   </ul>
 </nav>
 ```
 
-Vinculo do CSS externo no `<head>`:
+### Fluxo de interacao
 
-```html
-<link rel="stylesheet" href="css/style.css" />
-```
+1. O usuario acessa `index.html` no navegador.
+2. Visualiza o menu superior e o botao "Realizar Acao".
+3. Ao clicar no botao, o `js/main.js` captura o evento e exibe uma mensagem de feedback na tela.
+4. No lado do Controller, o `NavigationController.js` possui a funcao `gerenciarRota()` que decide o redirecionamento com base na acao recebida.
+
+---
+
+## Progresso do Desenvolvimento
+
+### Status das Rotas
+
+Quando o usuario clica no botao "Realizar Acao", o evento e capturado pelo `js/main.js`, que simula uma chamada ao `NavigationController.js`. O Controller possui a funcao `gerenciarRota(acao)` que verifica a acao recebida: se for "FINALIZAR_CADASTRO", exibe a tela de sucesso; caso contrario, permanece na pagina atual.
+
+### Feedback ao Usuario
+
+O sistema utiliza feedback visual para informar o usuario que uma acao foi concluida:
+
+- Uma mensagem de texto e exibida na tela ("Processando sua solicitacao...") com mudanca de cor para azul.
+- O efeito `:hover` no CSS indica que o botao e clicavel antes mesmo do clique (muda de cor e aumenta levemente de tamanho).
+- O botao possui contraste de cores (fundo escuro `#0056b3`, letra branca `#ffffff`) para facilitar a leitura e acessibilidade.
+
+### Dificuldades Tecnicas
+
+Um desafio encontrado foi manter a separacao entre a logica de interacao (JavaScript) e a estrutura da pagina (HTML). A tentacao inicial era colocar scripts inline direto no HTML, mas para seguir o padrao MVC foi necessario mover toda a logica para o arquivo `js/main.js` externo e referencia-lo com a tag `<script src>`. Isso exigiu cuidado com os caminhos relativos dos arquivos e com a ordem de carregamento dos scripts.
 
 ---
 
@@ -73,5 +82,3 @@ Vinculo do CSS externo no `<head>`:
 
 - [Pagina Inicial do Projeto](src/views/index.html)
 - [Guia de Markdown](https://www.markdownguide.org)
-
-

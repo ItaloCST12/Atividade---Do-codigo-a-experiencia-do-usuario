@@ -1,32 +1,27 @@
+/* Cores de alto contraste para acessibilidade */
+:root {
+    --cor-primaria: #0056b3;
+    --cor-sucesso: #28a745;
+    --cor-texto: #ffffff;
+}
+
 body {
-	margin: 0;
-	font-family: Arial, sans-serif;
-	background: #f5f5f5;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
-nav {
-	background: #222;
-	padding: 12px 20px;
+#btn-acao-principal {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s; /* Suaviza a interação */
 }
 
-nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	gap: 16px;
-}
-
-nav a {
-	color: #fff;
-	text-decoration: none;
-	font-weight: 600;
-}
-
-nav a:hover {
-	text-decoration: underline;
-}
-
-main {
-	padding: 24px;
+/* Feedback visual ao passar o mouse (Hover) */
+#btn-acao-principal:hover {
+    background-color: #003d7a;
+    transform: scale(1.05);
 }
